@@ -4,9 +4,16 @@
 {% block title %}Menú{% endblock %}
 
 {% block content %}
-    <!-- Contenido específico de la página principal -->
-    <h2>Bienvenido a mi sitio</h2>
-    <a href="{% url 'ver_listaEspera' %}"><button>Ver Lista de Espera</button></a>
-    <a href="{% url 'ingresar_rut' %}"><button>Ingresar Rut</button></a>
+    <div class="container-fluid bg-primary vh-100 d-flex align-items-center">
+        <div class="container bg-white p-4 rounded">
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center">
+                    <!-- Contenido específico de la página principal -->
+                    <h2>Menú Principal</h2>
+                    <a href="{% url 'ver_listaEspera' %}" class="btn btn-primary btn-lg mt-3">Ver Lista de Espera</a>
+                    <a href="{% url 'ingresar_rut' %}" class="btn btn-success btn-lg mt-3">Ingresar Rut</a>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
-
