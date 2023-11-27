@@ -1,19 +1,31 @@
 <!-- templates/listaEspera/ver_lista_espera.html -->
 {% extends 'listaEspera/header.html' %}
 
+{% load static %}
+
 {% block title %}Pacientes{% endblock %}
 
 {% block main %}
-    <h2>Ingresar Rut</h2>
-    <form method="post" action="{% url 'ingresar_rut' %}">
-        {% csrf_token %}
-        <label for="rut_number">Rut:</label>
-        <input type="text" name="rut_number" required>
-        <button type="submit">Ingresar</button>
-    </form>
+    <div class="container-fluid vh-100 d-flex align-items-center bg-container" style="background-image: url('{% static 'images/sanus.jpg' %}');">
+        <div class="container transparent-box">
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center">
+                    <h2>Ingresar Rut</h2>
+                    <form method="post" action="{% url 'ingresar_rut' %}">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <input type="text" name="rut_number" id="rut_number" class="form-control" placeholder="Ingrese su Rut ..." required>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success btn-block mt-3">Ingresar</button>
+                        </div>
+                    </form>
 
-    {% if paciente_espera %}
-    <h1>Su numero de espera es {{paciente_espera.numero_espera}}</h1>
-    {% endif %}
-    
+                    {% if paciente_espera %}
+                        <h1>Su numero de espera es {{paciente_espera.numero_espera}}</h1>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
