@@ -1,0 +1,32 @@
+<!-- templates/listaEspera/ver_lista_espera.html -->
+{% extends 'base.html' %}
+
+{% block title %}Clínica{% endblock %}
+
+{% block content %}
+    <h2>Lista de Espera</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>RUT</th>
+                <th>Esperando</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for paciente in tomas_espera %}
+                <tr>
+                    <td>{{ paciente.paciente.rut_number }}</td>
+                    <td>{{ paciente.fecha_toma|date:"H:i" }}</td>
+                    <td>
+                        <form method="post" action="{% url 'atender' pk=paciente.pk %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="pk" value="{{ paciente.pk }}">
+                            <input type="submit" value="Atender">
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

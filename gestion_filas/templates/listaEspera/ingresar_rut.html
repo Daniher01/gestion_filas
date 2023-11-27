@@ -1,0 +1,21 @@
+<!-- templates/listaEspera/ingresar_rut.html -->
+<!DOCTYPE html>
+<!-- templates/listaEspera/ver_lista_espera.html -->
+{% extends 'base.html' %}
+
+{% block title %}Pacientes{% endblock %}
+
+{% block content %}
+    <h2>Ingresar Rut</h2>
+    <form method="post" action="{% url 'ingresar_rut' %}">
+        {% csrf_token %}
+        <label for="rut_number">Rut:</label>
+        <input type="text" name="rut_number" required>
+        <button type="submit">Ingresar</button>
+    </form>
+
+    {% if paciente_espera %}
+    <h1>Su numero de espera es {{paciente_espera.numero_espera}}</h1>
+    {% endif %}
+    
+{% endblock %}
