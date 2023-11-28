@@ -19,7 +19,7 @@
 }
 
 #tecladoNumerico button {
-    width: 100px; /* Ajustamos el ancho de los botones */
+    width: 80px; /* Ajustamos el ancho de los botones */
     height: 60px; /* Ajustamos la altura de los botones */
     margin: 5px; /* Reducimos el margen entre los botones */
     font-size: 1.8rem; /* Reducimos el tamaño de la fuente */
