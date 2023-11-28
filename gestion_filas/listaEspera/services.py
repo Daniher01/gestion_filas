@@ -43,8 +43,12 @@ def obtener_proximo_numero():
 
 def agregar_paciente(numero_telefono):
     
-    # Verificar si ya existe un paciente con el mismo rut
+    if not numero_telefono:
+        numero_telefono = 'Sin Teléfono'
+    
+    # Verificar si ya existe un paciente con el mismo numero
     paciente_toma = Paciente.objects.filter(numero_telefono=numero_telefono).first()
+    
     if not paciente_toma:
         # Si no existe, crear el paciente
         paciente_toma = Paciente.objects.create(numero_telefono=numero_telefono)

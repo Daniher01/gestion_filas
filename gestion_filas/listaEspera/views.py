@@ -15,16 +15,18 @@ def solicitar_numero(request):
     if request.method == 'POST':
         
         numero_telefono = request.POST.get('numero_telefono')
-        if not numero_telefono:
-            numero_telefono = 'Sin numero de telefono'
         
         paciente_toma = agregar_paciente(numero_telefono)
             
-        paciente_espera = generar_numero_atencion(paciente_toma)
+        ticket_espera = generar_numero_atencion(paciente_toma)
+        
+                # aqui decidor si se envia por wsp o no
+        if not numero_telefono:
+            pass
 
         # ya agregado ese paciene a la lista, lo devuelve
-        if paciente_espera:
-            return render(request, 'listaEspera/ingresar_rut.html', {'paciente_espera': paciente_espera})
+        if ticket_espera:
+            return render(request, 'listaEspera/ingresar_rut.html', {'ticket_espera': ticket_espera})
         
     return render(request, 'listaEspera/ingresar_rut.html')
 
