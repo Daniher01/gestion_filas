@@ -14,9 +14,10 @@
                     <img src="{% static 'images/tuimagenlogo2.png' %}" alt="Tu imagen Logo" class="img-fluid mb-4">
                     <form method="post" action="{% url 'ingresar_rut' %}">
                         {% csrf_token %}
-                        <div class="form-group">
-                            <input type="text" name="rut_number" id="rut_number" class="form-control form-control-lg mb-4" placeholder="Ingrese su número telefónico" required>
-                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">+56</span>
+                            <input type="text" name="rut_number" id="rut_number" class="form-control " placeholder="Ingrese su número telefónico" required aria-describedby="basic-addon1">
+                          </div>
 
                         <div class="form-group d-grid gap-2 col-8 mx-auto">
                             <button class="btn btn-success ingresar-btn" type="submit">Ingresar</button>
