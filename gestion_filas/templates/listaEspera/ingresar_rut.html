@@ -13,28 +13,22 @@
                 <div class="col-md-8 text-center">
                     <img src="{% static 'images/tuimagenlogo2.png' %}" alt="Tu imagen Logo" class="img-fluid mb-4">
 
-                    <form method="post" action="{% url 'solicitar_numero' %}">
+                    <form method="post" id="formLista_espera" action="{% url 'solicitar_numero' %}">
                         {% csrf_token %}
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon1">+56</span>
-                            <input required type="text" name="numero_telefono" id="numero_telefono" class="form-control" placeholder="Ingrese su número telefónico" aria-describedby="basic-addon1" pattern="9[0-9]{8}" title="Número Telefónico Inválido">
+                            <input type="text" name="numero_telefono" id="numero_telefono" class="form-control" placeholder="Ingresa su número telefónico" aria-describedby="basic-addon1" pattern="9[0-9]{8}" title="Número Telefónico Inválido">
                           </div>
 
-                        <div class="form-group d-grid gap-2 col-8 mx-auto mb-4">
-                            <button class="btn btn-success ingresar-btn" type="submit" value="con_numero">Solicitar</button>
+                        <div class="form-group d-grid gap-2 col-8 mx-auto">
+                            <input type="hidden" name="boton_presionado" id="boton_presionado" value="">
+                            <button class="btn btn-success ingresar-btn" type="submit" onclick="setBotonPresionado('con_numero')">Solicitar</button>
+                            <button class="btn btn-link no-ingresar-btn" type="submit" onclick="setBotonPresionado('sin_numero')">No ingresar mi N° Telefónico</button>
                         </div>
 
                     </form>
 
-                    <form method="post" action="{% url 'solicitar_numero' %}">
-                        {% csrf_token %}
 
-                        <input hidden type="text" name="numero_telefono">
-
-                          <div class="form-group d-grid gap-2 col-8 mx-auto">
-                            <button class="btn btn-link no-ingresar-btn" type="submit" value="sin_numero" >No ingresar mi N° Telefónico</button>
-                        </div>
-                    </form>
 
 
 
@@ -76,6 +70,7 @@
     </div>
 
     <script src="{% static 'js/num_telefono.js' %}" ></script>
+    <script src="{% static 'js/envios_formulario_ticket.js' %}" ></script>
 
 {% endblock %}
 
