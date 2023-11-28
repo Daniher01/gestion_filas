@@ -17,7 +17,7 @@
             {% for paciente in tomas_espera %}
                 <tr>
                     <td>{{paciente.numero_espera}}</td>
-                    <td>{{ paciente.paciente.rut_number }}</td>
+                    <td>{{ paciente.paciente.numero_telefono }}</td>
                     <td>{{ paciente.fecha_toma|date:"H:i" }}</td>
                     <td>
                         <form method="post" action="{% url 'atender' pk=paciente.pk %}">

@@ -1,7 +1,8 @@
 # listaEspera/views.py
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from django.views import View
 from .models import Paciente, TomaEspera
+from .forms import Atencion_con_numero_telefonico_form, Atencion_sin_numero_telefonico_form
 
 class PaginaPrincipal(View):
     template_name = 'pagina_principal.html'
@@ -10,14 +11,17 @@ class PaginaPrincipal(View):
         return render(request, self.template_name)
 
 def ingresar_rut(request):
+    
+    form_atencion_con_numero = Atencion_con_numero_telefonico_form()
+    
     if request.method == 'POST':
-        rut_number = request.POST.get('rut_number')
+        numero_telefono = request.POST.get('numero_telefono')
         
         # Verificar si ya existe un paciente con el mismo rut
-        paciente_toma = Paciente.objects.filter(rut_number=rut_number).first()
+        paciente_toma = Paciente.objects.filter(numero_telefono=numero_telefono).first()
         if not paciente_toma:
             # Si no existe, crear el paciente
-            paciente_toma = Paciente.objects.create(rut_number=rut_number)
+            paciente_toma = Paciente.objects.create(numero_telefono=numero_telefono)
             
         # Verificar si hay una TomaEspera pendiente para ese paciente
         toma_espera_existente = TomaEspera.objects.filter(paciente=paciente_toma, atendido=False).first()
@@ -32,9 +36,9 @@ def ingresar_rut(request):
             paciente_espera = TomaEspera.objects.create(paciente=paciente_toma, numero_espera=nuevo_numero_espera)
             # ya agregado ese paciene a la lista, lo devuelve
             if paciente_espera:
-                return render(request, 'listaEspera/ingresar_rut.html', {'paciente_espera': paciente_espera})
+                return render(request, 'listaEspera/ingresar_rut.html', {'paciente_espera': paciente_espera, 'form_atencion_con_numero': form_atencion_con_numero})
         
-    return render(request, 'listaEspera/ingresar_rut.html')
+    return render(request, 'listaEspera/ingresar_rut.html', {'form_atencion_con_numero': form_atencion_con_numero})
 
 def ver_listaEspera(request):
     # Obtener todas las TomaEspera ordenadas por fecha de toma
