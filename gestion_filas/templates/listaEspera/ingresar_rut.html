@@ -13,18 +13,30 @@
                 <div class="col-md-8 text-center">
                     <img src="{% static 'images/tuimagenlogo2.png' %}" alt="Tu imagen Logo" class="img-fluid mb-4">
 
-                    <form method="post" action="{% url 'ingresar_rut' %}">
+                    <form method="post" action="{% url 'solicitar_numero' %}">
                         {% csrf_token %}
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon1">+56</span>
-                            <input type="text" name="numero_telefono" id="numero_telefono" class="form-control " placeholder="Ingrese su número telefónico" required aria-describedby="basic-addon1" pattern="9[0-9]{8}">
+                            <input type="text" name="numero_telefono" id="numero_telefono" class="form-control " placeholder="Ingrese su número telefónico" aria-describedby="basic-addon1" pattern="9[0-9]{8}">
                           </div>
 
-                        <div class="form-group d-grid gap-2 col-8 mx-auto">
-                            <button class="btn btn-success ingresar-btn" type="submit">Solicitar</button>
-                            <button class="btn btn-link no-ingresar-btn" type="submit">No ingresar mi N° Telefónico</button>
+                        <div class="form-group d-grid gap-2 col-8 mx-auto mb-4">
+                            <button class="btn btn-success ingresar-btn" type="submit" value="con_numero">Solicitar</button>
+                        </div>
+
+                    </form>
+
+                    <form method="post" action="{% url 'solicitar_numero' %}">
+                        {% csrf_token %}
+
+                        <input hidden type="text" name="numero_telefono">
+
+                          <div class="form-group d-grid gap-2 col-8 mx-auto">
+                            <button class="btn btn-link no-ingresar-btn" type="submit" value="sin_numero" >No ingresar mi N° Telefónico</button>
                         </div>
                     </form>
+
+
 
                     <div id="tecladoNumerico" class="container">
                         <!-- Botones del teclado numérico -->
@@ -55,7 +67,7 @@
                     </div>
 
                     {% if paciente_espera %}
-                        <h1>Su numero de espera es {{paciente_espera.numero_espera}}</h1>
+                        <h1>Su numero de espera es {{paciente_espera.centro}}{{paciente_espera.numero_espera}}</h1>
                     {% endif %}
                 </div>
             </div>

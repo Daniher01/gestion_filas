@@ -11,6 +11,7 @@ class Paciente(models.Model):
 class TomaEspera(models.Model):
     paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE)
     numero_espera = models.IntegerField()
+    centro = models.CharField(max_length=1, default='T')
     fecha_toma = models.DateTimeField(auto_now_add=True)
     atendido = models.BooleanField(default=False)
 

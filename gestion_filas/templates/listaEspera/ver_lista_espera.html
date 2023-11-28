@@ -1,9 +1,9 @@
 <!-- templates/listaEspera/ver_lista_espera.html -->
-{% extends 'listaEspera/header.html' %}
+{% extends 'base.html' %}
 
 {% block title %}Clínica{% endblock %}
 
-{% block main %}
+{% block content %}
     <h2>Lista de Espera</h2>
     <table>
         <thead>
@@ -16,7 +16,7 @@
         <tbody>
             {% for paciente in tomas_espera %}
                 <tr>
-                    <td>{{paciente.numero_espera}}</td>
+                    <td>{{paciente.centro}}{{paciente.numero_espera}}</td>
                     <td>{{ paciente.paciente.numero_telefono }}</td>
                     <td>{{ paciente.fecha_toma|date:"H:i" }}</td>
                     <td>
