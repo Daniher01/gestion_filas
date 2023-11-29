@@ -1,5 +1,6 @@
 # listaEspera/models.py
 from django.db import models
+from django.forms.models import model_to_dict
 
 class Paciente(models.Model):
     numero_telefono = models.CharField(max_length=12 ,default='Sin Teléfono')
@@ -16,4 +17,25 @@ class TomaEspera(models.Model):
     atendido = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"Número de espera: {self.numero_espera} - Paciente: {self.paciente.numero_telefono}"
+        return f"Número de espera: {self.ticket} - Paciente: {self.paciente}"
+    
+    def to_dict(self):
+        # Convertir el objeto paciente a un diccionario
+        paciente_data = model_to_dict(self.paciente)
+
+        # Crear el diccionario manualmente incluyendo los campos necesarios
+        data = {
+            'id': self.id,
+            'paciente': paciente_data,
+            'numero_espera': self.numero_espera,
+            'centro': self.centro,
+            'fecha_toma': self.fecha_toma,  # Incluimos la fecha en formato ISO 8601
+            'atendido': self.atendido,
+            'ticket': self.ticket,
+        }
+
+        return data
+    
+    @property
+    def ticket(self):
+        return f"{self.centro}{self.numero_espera}"

@@ -1,24 +1,26 @@
 <!-- templates/listaEspera/ver_lista_espera.html -->
 {% extends 'listaEspera/header.html' %}
 
+{% load static %}
+
 {% block title %}Clínica{% endblock %}
 
 {% block main %}
     <h2>Lista de Espera</h2>
-    <table>
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>N°</th>
                 <th>Hora</th>
                 <th>Fecha</th>
                 <th>Teléfono</th>
-                <td>Acción</td>
+                <th>Acción</th>
             </tr>
         </thead>
-        <tbody>
-            {% for lista in tomas_espera %}
+        <tbody id="tbodyListaEspera">
+            {% comment %} {% for lista in tomas_espera %}
                 <tr>
-                    <td>{{lista.centro}}{{lista.numero_espera}}</td>
+                    <th>{{lista.centro}}{{lista.numero_espera}}</th>
                     <td>{{ lista.fecha_toma|date:"H:i" }}</td>
                     <td>{{ lista.fecha_toma|date:"d-m-Y" }}</td>
                     <td>{{ lista.paciente.numero_telefono }}</td>
@@ -30,7 +32,9 @@
                         </form>
                     </td>
                 </tr>
-            {% endfor %}
+            {% endfor %} {% endcomment %}
         </tbody>
     </table>
+
+    <script src="{% static 'js/atencion_pacientes.js' %}" ></script>
 {% endblock %}

@@ -79,7 +79,22 @@ $("#formLista_espera").submit(function (event) {
             },
             error: function(error) {
                 // Maneja los errores aquí
-                console.log(error);
+                Swal.fire({
+                    title: `¡Error!  ${error.status}`,
+                    html: `${error.statusText}`,
+                    icon: 'error',
+                    confirmButtonText: 'Volver',
+                    customClass: {
+                        confirmButton: 'btn btn-danger'
+                    },
+                    buttonsStyling: false,
+                    allowOutsideClick: false
+                }).then((result) => {
+                    // Después de hacer clic en "Volver", recargar la página
+                    if (result.isConfirmed) {
+                        location.reload();
+                    }
+                });
             }
         });
     }
