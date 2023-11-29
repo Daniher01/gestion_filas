@@ -1,6 +1,7 @@
 # listaEspera/views.py
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
+from django.forms.models import model_to_dict
 from django.core.serializers import serialize
 from django.views import View
 from .models import Paciente, TomaEspera
@@ -28,9 +29,11 @@ def solicitar_numero(request):
 
         # ya agregado ese paciene a la lista, lo devuelve
         if ticket_espera:
-            # Convertir el objeto a JSON usando serialize
-            ticket_json = serialize('json', [ticket_espera])
-            return JsonResponse({'ticket_espera': ticket_json})
+            # Convertir el objeto a un diccionario
+            ticket_dict = model_to_dict(ticket_espera)
+            return JsonResponse({'ticket_espera': ticket_dict})
+        else:
+            return JsonResponse({'ticket_espera': None})
         
     return render(request, 'listaEspera/ingresar_rut.html')
 

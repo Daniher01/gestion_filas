@@ -36,14 +36,46 @@ $("#formLista_espera").submit(function (event) {
             url: $(this).attr("action"),
             data: formData,
             success: function(response) {
-                // El valor es nulo o vacío
-                console.log(response);
+                
+            console.log(response);
+
+            if(response.ticket_espera !== null){
                 Swal.fire({
-                    title: `'adasd`,
-                    text: 'Asegurate de ingresar un Número correcto!',
+                    title: `Tu número de atencion es: 
+                    <strong>${response.ticket_espera.centro}${response.ticket_espera.numero_espera}</strong>`,
+                    html: '¡Si ingresaste tu número telefónico, te llegará vía WhatsApp sino, te recomendamos <strong>Memorizarlo</strong>!',
                     icon: 'success',
-                    confirmButtonText: 'Volver'
+                    confirmButtonText: 'Entendido',
+                    customClass: {
+                        confirmButton: 'btn btn-success'
+                    },
+                    buttonsStyling: false,
+                    allowOutsideClick: false
+                }).then((result) => {
+                    // Después de hacer clic en "Volver", recargar la página
+                    if (result.isConfirmed) {
+                        location.reload();
+                    }
                 });
+            }else{
+                Swal.fire({
+                    title: `¡Lo Siento!`,
+                    html: 'Parece que ya tienes un ticket de espera con este número telefónico',
+                    icon: 'warning',
+                    confirmButtonText: 'Entendido',
+                    customClass: {
+                        confirmButton: 'btn btn-success'
+                    },
+                    buttonsStyling: false,
+                    allowOutsideClick: false
+                }).then((result) => {
+                    // Después de hacer clic en "Volver", recargar la página
+                    if (result.isConfirmed) {
+                        location.reload();
+                    }
+                });
+            }
+
             },
             error: function(error) {
                 // Maneja los errores aquí
