@@ -35,11 +35,6 @@ def generar_ticket():
     return nuevo_numero
     
     
-    return nuevo_numero_espera
-
-def obtener_proximo_numero():
-    pass
-    
 
 def agregar_paciente(numero_telefono):
     
