@@ -31,7 +31,7 @@ def solicitar_numero(request):
         else:
             return JsonResponse({'ticket_espera': None})
         
-    return render(request, 'listaEspera/ingresar_rut.html')
+    return render(request, 'listaEspera/ingresar_telefono.html')
 
 
 def ver_listaEspera(request):
