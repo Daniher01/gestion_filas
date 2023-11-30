@@ -70,7 +70,10 @@ const crear_tabla_datos = () => {
                 TBODY_LISTA.appendChild(trElement);
 
                 // Agregar Alerta
-                haPasadoTiempo(fechaHora) ? thElement.classList.add('text-danger') : null
+                if(haPasadoTiempo(fechaHora)){
+                    thElement.classList.add('text-danger')
+                    mostrarAlertaPacientes()
+                }
 
             });
         },
@@ -156,4 +159,10 @@ let haPasadoTiempo = (fechaTr) => {
     let diferenciaMinutos = diferenciaMilisegundos / (1000 * 60);
 
     return diferenciaMinutos >= tiempoDeseadoMinutos;
+}
+
+let mostrarAlertaPacientes = () => {
+    const alertDiv = document.getElementById("alertPacientes");
+    alertDiv.classList.remove("d-none");
+    alertDiv.classList.add("d-block");
 }
