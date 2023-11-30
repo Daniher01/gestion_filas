@@ -7,10 +7,10 @@
 
 {% block main %}
     <h2>Lista de Espera</h2>
-    <table class="table table-striped">
-        <thead>
+    <table class="table table-responsive table-bordered text-center align-middle">
+        <thead class="table-dark">
             <tr>
-                <th>N°</th>
+                <th>N° Ticket</th>
                 <th>Hora</th>
                 <th>Fecha</th>
                 <th>Teléfono</th>
@@ -18,21 +18,7 @@
             </tr>
         </thead>
         <tbody id="tbodyListaEspera">
-            {% comment %} {% for lista in tomas_espera %}
-                <tr>
-                    <th>{{lista.centro}}{{lista.numero_espera}}</th>
-                    <td>{{ lista.fecha_toma|date:"H:i" }}</td>
-                    <td>{{ lista.fecha_toma|date:"d-m-Y" }}</td>
-                    <td>{{ lista.paciente.numero_telefono }}</td>
-                    <td>
-                        <form method="post" action="{% url 'atender' pk=lista.pk %}">
-                            {% csrf_token %}
-                            <input type="hidden" name="pk" value="{{ lista.pk }}">
-                            <input type="submit" value="Atender">
-                        </form>
-                    </td>
-                </tr>
-            {% endfor %} {% endcomment %}
+
         </tbody>
     </table>
 

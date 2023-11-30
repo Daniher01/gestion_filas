@@ -42,8 +42,6 @@ def obtener_listaEspera(request):
     # Obtener todas las TomaEspera ordenadas por fecha de toma
     lista_espera = TomaEspera.objects.filter(atendido=False).order_by('fecha_toma')
     
-    print(lista_espera)
-    
     # Convertir cada instancia a un diccionario usando model_to_dict
     lista_espera_data = [item.to_dict() for item in lista_espera]
     
