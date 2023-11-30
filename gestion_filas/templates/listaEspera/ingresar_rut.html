@@ -60,9 +60,7 @@
                         
                     </div>
 
-                    {% if ticket_espera %}
-                        <h1>Su numero de espera es {{paciente_espera.centro}}{{ticket_espera.numero_espera}}</h1>
-                    {% endif %}
+                    {% include 'listaEspera/footer.html' %}
                 </div>
             </div>
         </div>
@@ -73,6 +71,7 @@
     <script src="{% static 'js/envios_formulario_ticket.js' %}" ></script>
 
 {% endblock %}
+
 
 
 
