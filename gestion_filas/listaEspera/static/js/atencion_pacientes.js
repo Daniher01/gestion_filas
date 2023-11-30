@@ -49,7 +49,7 @@ const crear_tabla_datos = () => {
                 };
 
                 if(index === 0){
-                    trElement.classList.add('table-primary');
+                    trElement.classList.add('table-active');
                 }
 
                 // Agregar el botón al cuarto td
@@ -64,6 +64,9 @@ const crear_tabla_datos = () => {
 
                 // Agregar la fila al tbody
                 TBODY_LISTA.appendChild(trElement);
+
+                // Agregar Alerta
+                haPasadoTiempo(fechaHora) ? thElement.classList.add('text-danger') : null
 
             });
         },
@@ -129,4 +132,24 @@ let enviar_form_atender = (id_atencion) => {
                 });
         }
     });
+}
+
+let haPasadoTiempo = (fechaTr) => {
+
+    // Comparar si ha pasado el tiempo deseado (por ejemplo, 10 minutos)
+    let tiempoDeseadoMinutos = 10; // 10
+
+    // Obtener la fecha actual
+    let fechaActual = new Date();
+
+    // Convertir la fecha del tr al formato de fecha de JavaScript
+    let fechaTrFormato = new Date(fechaTr);
+
+    // Calcular la diferencia en milisegundos
+    let diferenciaMilisegundos = fechaActual - fechaTrFormato;
+
+    // Convertir la diferencia a minutos
+    let diferenciaMinutos = diferenciaMilisegundos / (1000 * 60);
+
+    return diferenciaMinutos >= tiempoDeseadoMinutos;
 }

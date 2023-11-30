@@ -5,26 +5,24 @@
 {% block title %}Pacientes{% endblock %}
 
 {% block content %}
-<div class="container">
-    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-        <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-        <span class="fs-4">Simple header</span>
+<header class="p-3 text-bg-dark">
+  <div class="container">
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+      <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+        <img src="{% static 'images/tuimagenlogo_solo.png' %}" width="40" height="32" alt="Tu Imagen logo">
+        <span class="fs-4"> Tu Imagen</span>
       </a>
 
-      <ul class="nav nav-pills">
-        <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Home</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Features</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Pricing</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">About</a></li>
-      </ul>
-    </header>
+      <div class="text-end">
+          <h4>Lista de Espera</h4>
+      </div>
+    </div>
   </div>
+</header>
 
-  <div class="container">
-    {% block main %}{% endblock main %}
-  </div>
+<div class="container mt-4">
+  {% block main %}{% endblock main %}
+</div>
 
 
 {% endblock content %}
