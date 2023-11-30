@@ -1,5 +1,5 @@
 # listaEspera/views.py
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.http import JsonResponse
 from django.views import View
 from .models import Paciente, TomaEspera
@@ -47,14 +47,16 @@ def obtener_listaEspera(request):
     
     return JsonResponse({'lista_espera': lista_espera_data})
 
-        
 
 def atender(request, pk):
-    if request.method == 'POST' or request.method == 'GET':
+    if request.method == 'GET':
         toma_espera = TomaEspera.objects.filter(pk=pk, atendido=False).first()
-        
         if toma_espera:
             # Marcar la TomaEspera como atendida
             toma_espera.atendido = True
             toma_espera.save()
-    return redirect('ver_listaEspera')
+            return JsonResponse({'atencion': True, 'mensaje': toma_espera.ticket})
+        else:
+            return JsonResponse({'atencion': False, 'mensaje': "Paciente no encontrado"})
+    
+    return JsonResponse({'atencion': False, 'mensaje': "Método no permitido"})

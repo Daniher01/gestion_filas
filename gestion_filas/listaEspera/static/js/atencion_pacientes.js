@@ -44,6 +44,9 @@ const crear_tabla_datos = () => {
                 // Agregar atributos o clases si es necesario
                 trElement.id = item.id;
                 botonElement.classList.add('btn', 'btn-primary');
+                botonElement.onclick = function(){
+                    enviar_form_atender(item.id)
+                };
 
                 if(index === 0){
                     trElement.classList.add('table-primary');
@@ -61,6 +64,48 @@ const crear_tabla_datos = () => {
 
                 // Agregar la fila al tbody
                 TBODY_LISTA.appendChild(trElement);
+
+            });
+        },
+        error: function (error) {
+            console.log(error);
+                // Maneja los errores aquí
+                Swal.fire({
+                    title: `¡Error! ${error.status}`,
+                    html: `${error.statusText}`,
+                    icon: 'error',
+                    confirmButtonText: 'Volver',
+                    customClass: {
+                        confirmButton: 'btn btn-danger'
+                    },
+                    buttonsStyling: false,
+                    allowOutsideClick: false
+                }).then((result) => {
+                    // Después de hacer clic en "Volver", recargar la página
+                    if (result.isConfirmed) {
+                        location.reload();
+                    }
+                });
+        }
+    });
+}
+
+let enviar_form_atender = (id_atencion) => {
+    $.ajax({
+        url: `${window.location.origin}/atender/${id_atencion}`,  // Reemplaza esto con la URL de tu API
+        method: 'GET',
+        success: function (response) {
+            Swal.fire({
+                title: response.mensaje,
+                text: response.atencion ? 'Paciente atendido': 'No se pudo atender al paciente',
+                icon: response.atencion ? 'success': 'warning',
+                confirmButtonText: 'Etendido',
+                allowOutsideClick: false
+            }).then((result) => {
+                // Después de hacer clic en "Volver", recargar la página
+                if (result.isConfirmed) {
+                    location.reload();
+                }
             });
         },
         error: function (error) {
