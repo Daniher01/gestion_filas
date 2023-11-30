@@ -4,6 +4,15 @@ $(document).ready(function () {
     // todo recargar tabla cada segundo y medio
 });
 
+window.setInterval( //// CREA UN INTERVALO DE TIEMPO PARA LA RECARGA
+  function () {
+      
+    crear_tabla_datos()
+  },
+  // Intervalo de tiempo
+  1500 //1200
+);
+
 const crear_tabla_datos = () => {
 
     $.ajax({
