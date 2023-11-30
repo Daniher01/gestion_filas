@@ -1,3 +1,33 @@
+:root {
+    --color-fondo: #892a7d;
+    --color-texto: white;
+  }
+
+.color-tuimagen,
+.color-tuimagen:active {
+    background-color: var(--color-fondo) !important;
+    color: var(--color-texto) !important;
+}
+
+.table-tuimagen th {
+    background-color: var(--color-fondo) !important;
+    color: var(--color-texto) !important;
+}
+
+.btn-outline-tuimagen {
+    color: var(--color-fondo);
+    background-color: transparent;
+    background-image: none;
+    border: 1px solid var(--color-fondo);
+  }
+  
+.btn-outline-tuimagen:hover {
+    color: var(--color-texto);
+    background-color: var(--color-fondo);
+    border-color: var(--color-fondo);
+}
+
+
 .bg-container {
     background-size: cover;
     background-position: center;

@@ -1,6 +1,7 @@
 $(document).ready(function () {
     crear_tabla_datos()
-
+    // todo crear alerta
+    // todo recargar tabla cada segundo y medio
 });
 
 const crear_tabla_datos = () => {
@@ -40,16 +41,19 @@ const crear_tabla_datos = () => {
                 tdDiaElement.textContent = dia;
                 tdTelefonoElement.textContent = item.paciente.numero_telefono;
                 botonElement.textContent = 'Atender';
-
+                botonElement.classList.add('btn');
                 // Agregar atributos o clases si es necesario
                 trElement.id = item.id;
-                botonElement.classList.add('btn', 'btn-primary');
+
                 botonElement.onclick = function(){
                     enviar_form_atender(item.id)
                 };
 
                 if(index === 0){
                     trElement.classList.add('table-active');
+                    botonElement.classList.add('btn-outline-tuimagen');
+                }else{
+                    botonElement.classList.add('btn-outline-dark');
                 }
 
                 // Agregar el botón al cuarto td
