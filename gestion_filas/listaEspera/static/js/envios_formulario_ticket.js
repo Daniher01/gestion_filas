@@ -17,8 +17,8 @@ $("#formLista_espera").submit(function (event) {
     if ((numero_identificador === null || $.trim(numero_identificador) === '') && botonPresionado === 'con_numero') {
         // El valor es nulo o vacío
         Swal.fire({
-            title: 'Número Inválido!',
-            text: 'Asegurate de ingresar un Número correcto!',
+            title: 'Rut Inválido!',
+            text: 'Asegurate de ingresar un rut correcto!',
             icon: 'warning',
             confirmButtonText: 'Volver'
         });
