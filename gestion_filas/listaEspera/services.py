@@ -5,7 +5,7 @@ def generar_numero_atencion(paciente_toma):
     
     toma_espera_existente = None
     
-    if paciente_toma.numero_telefono:
+    if paciente_toma.num_identificador:
         # Verificar si hay una TomaEspera pendiente para ese paciente
         toma_espera_existente = TomaEspera.objects.filter(paciente=paciente_toma, atendido=False).first()        
         
@@ -39,15 +39,15 @@ def generar_ticket():
     
     
 
-def agregar_paciente(numero_telefono):
+def agregar_paciente(num_identificador):
     
-    if numero_telefono:
+    if num_identificador:
         # Verificar si ya existe un paciente con el mismo numero
-        paciente_toma = Paciente.objects.filter(numero_telefono=numero_telefono).first()
+        paciente_toma = Paciente.objects.filter(num_identificador=num_identificador).first()
     
         if not paciente_toma:
             # Si no existe, crear el paciente
-            paciente_toma = Paciente.objects.create(numero_telefono=numero_telefono)
+            paciente_toma = Paciente.objects.create(num_identificador=num_identificador)
     else:
         paciente_toma = Paciente.objects.create()
         

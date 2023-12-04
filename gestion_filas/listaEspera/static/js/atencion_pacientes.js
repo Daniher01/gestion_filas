@@ -40,7 +40,7 @@ const crear_tabla_datos = () => {
                 let thElement = document.createElement('th');
                 let tdHoraElement = document.createElement('td');
                 let tdDiaElement = document.createElement('td');
-                let tdTelefonoElement = document.createElement('td');
+                let tdnum_identificadorElement = document.createElement('td');
                 let tdBotonElement = document.createElement('td');
                 let botonElement = document.createElement('button');
 
@@ -48,7 +48,7 @@ const crear_tabla_datos = () => {
                 thElement.textContent = item.ticket;
                 tdHoraElement.textContent = hora;
                 tdDiaElement.textContent = dia;
-                tdTelefonoElement.textContent = item.paciente.numero_telefono;
+                tdnum_identificadorElement.textContent = item.paciente.num_identificador;
                 botonElement.textContent = 'Atender';
                 botonElement.classList.add('btn');
                 // Agregar atributos o clases si es necesario
@@ -72,7 +72,7 @@ const crear_tabla_datos = () => {
                 trElement.appendChild(thElement);
                 trElement.appendChild(tdHoraElement);
                 trElement.appendChild(tdDiaElement);
-                trElement.appendChild(tdTelefonoElement);
+                trElement.appendChild(tdnum_identificadorElement);
                 trElement.appendChild(tdBotonElement);
 
                 // Agregar la fila al tbody

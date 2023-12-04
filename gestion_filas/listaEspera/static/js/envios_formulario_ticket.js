@@ -11,10 +11,10 @@ $("#formLista_espera").submit(function (event) {
     let botonPresionado = $("#boton_presionado").val();
 
     // Obtener valores de campos específicos
-    let numeroTelefono = $("#numero_telefono").val();
+    let numero_identificador = $("#num_identificador").val();
 
     // Verificar si el valor es nulo o vacío
-    if ((numeroTelefono === null || $.trim(numeroTelefono) === '') && botonPresionado === 'con_numero') {
+    if ((numero_identificador === null || $.trim(numero_identificador) === '') && botonPresionado === 'con_numero') {
         // El valor es nulo o vacío
         Swal.fire({
             title: 'Número Inválido!',
@@ -25,7 +25,7 @@ $("#formLista_espera").submit(function (event) {
     } else {
         // Construir el objeto de datos
         let formData = {
-            numero_telefono: numeroTelefono,
+            numero_identificador: numero_identificador,
             csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val(),
         };
 

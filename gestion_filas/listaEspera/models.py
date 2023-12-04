@@ -3,11 +3,11 @@ from django.db import models
 from django.forms.models import model_to_dict
 
 class Paciente(models.Model):
-    numero_telefono = models.CharField(max_length=12 ,default='Sin Teléfono')
+    num_identificador = models.CharField(max_length=12 ,default='Sin Teléfono')
     fecha_creacion = models.DateTimeField(auto_now_add=True)  # Agrega la fecha de creación automáticamente
 
     def __str__(self):
-        return self.numero_telefono
+        return self.num_identificador
 
 class TomaEspera(models.Model):
     paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE)
