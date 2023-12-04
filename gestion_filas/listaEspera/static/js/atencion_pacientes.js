@@ -10,7 +10,7 @@ window.setInterval( //// CREA UN INTERVALO DE TIEMPO PARA LA RECARGA
     crear_tabla_datos()
   },
   // Intervalo de tiempo
-  1500 //1200
+  5000 //1200
 );
 
 const crear_tabla_datos = () => {
