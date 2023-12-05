@@ -1,34 +1,38 @@
 const num_identificador = document.getElementById('num_identificador');
+const btn_solicitar = document.getElementById('btn_solicitar')
 
 function agregarNumero(numero) {
     let telInput = num_identificador;
     telInput.value += numero;
+    cambiar_numero_rut()
     
 }
 
 function borrarNumero() {
     let telInput = num_identificador;
     telInput.value = telInput.value.slice(0, -1);
+    cambiar_numero_rut()
 }
 
-num_identificador.addEventListener('input', function () {
-    var rutInput = this.value.replace(/[^0-9kK]/g, '');
+function cambiar_numero_rut(){
+    let rutInput = num_identificador.value.replace(/[^0-9kK]/g, '');
 
-    if (rutInput.length > 1) {
-      var rutFormateado = formatearRut(rutInput);
-      this.value = rutFormateado;
+    if (rutInput.length >= 1) {
+      let rutFormateado = formatearRut(rutInput);
+      num_identificador.value = rutFormateado;
       validarRut(rutInput);
-    }else{
-        document.getElementById('msgerror').innerText = ''; // todo revisar
+    } else {
+      num_identificador.classList.remove('border-danger')
+      btn_solicitar.disabled = false;
     }
-  });
+}
 
   function formatearRut(rut) {
-    var rutSinFormato = rut.replace(/\./g, '').replace('-', '');
-    var rutFormateado = '';
-    var contador = 0;
+    let rutSinFormato = rut.replace(/\./g, '').replace('-', '');
+    let rutFormateado = '';
+    let contador = 0;
 
-    for (var i = rutSinFormato.length - 1; i >= 0; i--) {
+    for (let i = rutSinFormato.length - 1; i >= 0; i--) {
         if (contador === 1 && i === rutSinFormato.length - 2) {
             rutFormateado = '-' + rutFormateado;
             contador = 0;
@@ -44,12 +48,12 @@ num_identificador.addEventListener('input', function () {
 }
 
 function validarRut(rut) {
-    var rutSinFormato = rut.replace(/[.-]/g, '');
-    var dv = rutSinFormato.slice(-1).toUpperCase();
-    var rutNumerico = parseInt(rutSinFormato.slice(0, -1), 10);
+    let rutSinFormato = rut.replace(/[.-]/g, '');
+    let dv = rutSinFormato.slice(-1).toUpperCase();
+    let rutNumerico = parseInt(rutSinFormato.slice(0, -1), 10);
 
-    var suma = 0;
-    var multiplicador = 2;
+    let suma = 0;
+    let multiplicador = 2;
 
     while (rutNumerico > 0) {
       suma += (rutNumerico % 10) * multiplicador;
@@ -57,8 +61,8 @@ function validarRut(rut) {
       multiplicador = multiplicador === 7 ? 2 : multiplicador + 1;
     }
 
-    var resto = suma % 11;
-    var digitoVerificadorCalculado = 11 - resto;
+    let resto = suma % 11;
+    let digitoVerificadorCalculado = 11 - resto;
 
     if (digitoVerificadorCalculado === 11) {
       digitoVerificadorCalculado = '0';
@@ -69,8 +73,12 @@ function validarRut(rut) {
     }
 
     if (dv !== digitoVerificadorCalculado) {
-      document.getElementById('msgerror').innerText = 'RUT Inválido';
+      num_identificador.classList.add('border-danger')
+      btn_solicitar.disabled = true;
     } else {
-      document.getElementById('msgerror').innerText = '';
+      num_identificador.classList.remove('border-danger')
+      num_identificador.classList.add('border-success')
+      btn_solicitar.disabled = false;
     }
 }
+
