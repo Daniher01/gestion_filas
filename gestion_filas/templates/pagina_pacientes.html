@@ -9,10 +9,9 @@
     <div class="container transparent-box px-5 py-4">
             <div class="row justify-content-center">
                 <div class="col-md-8 text-center">
+                    <img src="{% static 'images/tuimagenlogo_completo.png' %}" alt="Tu imagen Logo" class="img-fluid mb-4" width="280">
                     <!-- Contenido específico de la página principal -->
-                    <h2>Menú Principal</h2>
-                    <a href="{% url 'ver_listaEspera' %}" class="btn btn-primary btn-lg mt-3">Lista de Espera</a>
-                    <a href="{% url 'pacientes' %}" class="btn btn-success btn-lg mt-3">Pacientes</a>
+                    <a href="{% url 'solicitar_numero' %}" class="btn btn-success btn-lg mt-3">Solicitar Ticket</a>
                 </div>
             </div>
         </div>

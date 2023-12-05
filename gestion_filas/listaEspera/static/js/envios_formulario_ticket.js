@@ -1,3 +1,5 @@
+const url_main_pacientes = `${window.location.origin}/pacientes/`
+
 function setBotonPresionado(valor) {
     document.getElementById('boton_presionado').value = valor;
 }
@@ -77,7 +79,7 @@ $("#formLista_espera").submit(function (event) {
                               },
                               willClose: () => {
                                 clearInterval(timerInterval)
-                                location.reload();
+                                window.location.href = url_main_pacientes
                               }
                         });
                     }
@@ -96,7 +98,7 @@ $("#formLista_espera").submit(function (event) {
                 }).then((result) => {
                     // Después de hacer clic en "Volver", recargar la página
                     if (result.isConfirmed) {
-                        location.reload();
+                        window.location.href = url_main_pacientes
                     }
                 });
             }
@@ -117,7 +119,7 @@ $("#formLista_espera").submit(function (event) {
                 }).then((result) => {
                     // Después de hacer clic en "Volver", recargar la página
                     if (result.isConfirmed) {
-                        location.reload();
+                        window.location.href = url_main_pacientes
                     }
                 });
             }

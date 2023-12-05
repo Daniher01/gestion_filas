@@ -11,6 +11,12 @@ class PaginaPrincipal(View):
     def get(self, request, *args, **kwargs):
         return render(request, self.template_name)
 
+class Principal_pacientes(View):
+    template_name = 'pagina_pacientes.html'
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)
+
 def solicitar_numero(request):
     
     if request.method == 'POST':
@@ -32,7 +38,6 @@ def solicitar_numero(request):
             return JsonResponse({'ticket_espera': None})
         
     return render(request, 'listaEspera/ingresar_numero_identificador.html')
-
 
 def ver_listaEspera(request):
     
