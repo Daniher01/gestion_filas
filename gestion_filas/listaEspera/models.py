@@ -3,7 +3,7 @@ from django.db import models
 from django.forms.models import model_to_dict
 
 class Paciente(models.Model):
-    num_identificador = models.CharField(max_length=12 ,default='Sin Teléfono')
+    num_identificador = models.CharField(max_length=12 ,default='Sin Rut')
     fecha_creacion = models.DateTimeField(auto_now_add=True)  # Agrega la fecha de creación automáticamente
 
     def __str__(self):
