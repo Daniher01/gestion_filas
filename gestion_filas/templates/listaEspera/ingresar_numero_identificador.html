@@ -19,9 +19,8 @@
                             <input type="text" name="num_identificador" id="num_identificador" class="form-control" placeholder="Ingrese su Rut" aria-describedby="basic-addon1" title="RUT Inválido" autocomplete="new-password">
                         </div>
                         <div class="form-group d-grid gap-2 col-8 mx-auto">
-                            <input type="hidden" name="boton_presionado" id="boton_presionado" value="">
-                            <button class="btn color-tuimagen ingresar-btn" type="submit" id="btn_solicitar" onclick="setBotonPresionado('con_numero')">Solicitar</button>
-                            <button class="btn  btn-outline-secondary no-ingresar-btn" type="submit" onclick="setBotonPresionado('sin_numero')">No ingresar mi Rut</button>
+                            <button class="btn color-tuimagen ingresar-btn" type="submit" id="btn_solicitar">Solicitar</button>
+            
                         </div>
 
                     </form>
@@ -54,6 +53,15 @@
                         
                     </div>
 
+                    <form method="post" id="formLista_espera_sin_rut" action="{% url 'solicitar_numero' %}">
+                        {% csrf_token %}
+                        <div class="input-group input-group-lg">
+                            <input hidden type="text" name="num_identificador" id="num_identificador">
+                        </div>
+                        <div class="form-group mb-4 d-grid gap-2 col-8 mx-auto">
+                            <button class="btn  btn-outline-secondary no-ingresar-btn" type="submit">No ingresar mi Rut</button>
+                        </div>
+                    </form>
 
 
                     {% include 'listaEspera/footer.html' %}

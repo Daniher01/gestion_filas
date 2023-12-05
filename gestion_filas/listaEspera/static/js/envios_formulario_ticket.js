@@ -1,22 +1,15 @@
 const url_main_pacientes = `${window.location.origin}/pacientes/`
 
-function setBotonPresionado(valor) {
-    document.getElementById('boton_presionado').value = valor;
-}
-
 
 $("#formLista_espera").submit(function (event) {
     // Prevenir el comportamiento predeterminado del formulario
     event.preventDefault();
 
-    // Obtener el valor del campo oculto
-    let botonPresionado = $("#boton_presionado").val();
-
     // Obtener valores de campos específicos
     let numero_identificador = $("#num_identificador").val();
 
     // Verificar si el valor es nulo o vacío
-    if ((numero_identificador === null || $.trim(numero_identificador) === '') && botonPresionado === 'con_numero') {
+    if ((numero_identificador === null || $.trim(numero_identificador) === '')) {
         // El valor es nulo o vacío
         Swal.fire({
             title: 'Rut Inválido!',
@@ -30,12 +23,40 @@ $("#formLista_espera").submit(function (event) {
             numero_identificador: numero_identificador,
             csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val(),
         };
+        let method = $(this).attr("method");
+        let action = $(this).attr("action");
+        
+        enviar_formulario(method, action, formData)
+    }
+    
+});
 
+$("#formLista_espera_sin_rut").submit(function (event) {
+    // Prevenir el comportamiento predeterminado del formulario
+    event.preventDefault();
+
+    // Obtener valores de campos específicos
+    let numero_identificador = $("#num_identificador").val();
+
+    // Construir el objeto de datos
+    let formData = {
+        numero_identificador: numero_identificador,
+        csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val(),
+    };
+    let method = $(this).attr("method");
+    let action = $(this).attr("action");
+    
+    enviar_formulario(method, action, formData)
+
+    
+});
+
+let enviar_formulario = (method, action, formData) => {
 
         // Realiza la solicitud AJAX
         $.ajax({
-            type: $(this).attr("method"),
-            url: $(this).attr("action"),
+            type: method,
+            url: action,
             data: formData,
             success: function(response) {
                 
@@ -124,6 +145,5 @@ $("#formLista_espera").submit(function (event) {
                 });
             }
         });
-    }
-    
-});
+
+}
