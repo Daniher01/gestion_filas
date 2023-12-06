@@ -9,6 +9,11 @@
     color: var(--color-texto) !important;
 }
 
+
+.btn_rut:active {
+    opacity: 0.5;
+}
+
 .table-tuimagen th {
     background-color: var(--color-fondo) !important;
     color: var(--color-texto) !important;
