@@ -108,7 +108,7 @@ let enviar_formulario = (method, action, formData) => {
             }else{
                 Swal.fire({
                     title: `¡Lo Siento!`,
-                    html: 'Parece que ya tienes un ticket de espera con este número telefónico',
+                    html: 'Parece que ya tienes un ticket de espera con este Rut',
                     icon: 'warning',
                     confirmButtonText: 'Entendido',
                     customClass: {
