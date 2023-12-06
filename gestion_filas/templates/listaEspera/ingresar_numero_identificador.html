@@ -16,10 +16,10 @@
                     <form method="post" id="formLista_espera" action="{% url 'solicitar_numero' %}">
                         {% csrf_token %}
                         <div class="input-group mb-3 input-group-lg">
-                            <input type="text" name="num_identificador" id="num_identificador" class="form-control" placeholder="Ingrese su Rut" aria-describedby="basic-addon1" title="RUT Inválido" autocomplete="new-password">
+                            <input type="text" name="num_identificador" id="num_identificador" class="form-control" placeholder="Ingrese su Rut" aria-describedby="basic-addon1" title="RUT Inválido" autocomplete="off">
                         </div>
                         <div class="form-group d-grid gap-2 col-8 mx-auto">
-                            <button class="btn color-tuimagen ingresar-btn" type="submit" id="btn_solicitar">Solicitar</button>
+                            <button class="btn color-tuimagen ingresar-btn btn_rut" type="submit" id="btn_solicitar">Solicitar</button>
             
                         </div>
 
