@@ -95,7 +95,8 @@ let enviar_formulario = (method, action, formData) => {
 
                                 timerInterval = setInterval(() => {
                                     let segundos = Math.floor(Swal.getTimerLeft() / 1000)
-                                    footerText.innerHTML = `<i class="fa-regular fa-clock"></i><b> ${segundos} segundos</b> para volver al inicio`
+                                    let textoSegundos = (segundos === 1) ? 'segundo' : 'segundos';
+                                    footerText.innerHTML = `<i class="fa-regular fa-clock"></i><b> ${segundos} ${textoSegundos}</b> para volver al inicio`
                                 }, 100)
                               },
                               willClose: () => {
