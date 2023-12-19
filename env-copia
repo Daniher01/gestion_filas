@@ -1,0 +1,9 @@
+DB_NAME=gestion_filas
+DB_USER=postgres
+DB_PASSWORD=1d3@sPr0
+DB_HOST=postgres_db
+DB_PORT=5432
+
+
+PGADMIN_DEFAULT_EMAIL=admin@admin.com
+PGADMIN_DEFAULT_PASSWORD=tuimagen
