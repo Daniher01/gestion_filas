@@ -6,9 +6,13 @@
 
 {% block content %}
 <a href="{% url 'solicitar_numero' %}" style="display: block;">
-    <div class="container-fluid vh-100 d-flex align-items-center bg-container" style="background-image: url('{% static 'images/box.jpg' %}');">
-        {% comment %} todo agregar aqui la imagen silicitada {% endcomment %}
-        aqui va la imageeeen
+    <div class="container-fluid vh-100 d-flex align-items-center bg-container">
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;">
+            <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;">
+                <source src="{% static 'videos/inicio_sanus.mp4' %}" type="video/mp4">
+                Tu navegador no soporta el elemento de video.
+            </video>
+        </div>
     </div>
 </a>
 
