@@ -21,7 +21,6 @@ const crear_tabla_datos = () => {
         dataType: 'JSON',
         success: function (response) {
             const TBODY_LISTA = document.getElementById('tbodyListaEspera');
-
             // Limpiar el contenido actual del tbody
             TBODY_LISTA.innerHTML = '';
 

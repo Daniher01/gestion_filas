@@ -18,7 +18,7 @@ COPY Pipfile Pipfile.lock /app/
 RUN pipenv install --deploy --ignore-pipfile
 
 # Copy the current directory contents into the container at /app/
-COPY ./gestion_filas /app/
+COPY ./gestion_filas /app/gestion_filas/
 
 # Expose port 8000 for Django
 EXPOSE 8000
