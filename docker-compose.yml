@@ -30,6 +30,9 @@ services:
       - postgres
     networks:
       - my_network
+    volumes:
+      - ./gestion_filas:/app
+      - ./entrypoint.sh:/app/entrypoint.sh
     restart: unless-stopped  # Reinicio del servicio a menos que se detenga manualmente
 
   pgadmin:
