@@ -23,9 +23,5 @@ COPY ./gestion_filas /app/gestion_filas/
 # Expose port 8000 for Django
 EXPOSE 8000
 
-# Create a script to run migrations and start the server
-COPY entrypoint.sh /app/entrypoint.sh
-RUN chmod +x /app/entrypoint.sh
-
 # Run migrations and start the Django development server
-CMD ["/app/entrypoint.sh"]
+CMD /bin/sh -c "pipenv run python ./gestion_filas/manage.py migrate && pipenv run python ./gestion_filas/manage.py runserver 0.0.0.0:8000"

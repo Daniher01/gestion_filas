@@ -2,7 +2,7 @@ version: '3'
 
 services:
   postgres:
-    image: postgres:latest
+    image: postgres:16
     container_name: ${DB_HOST}
     environment:
       POSTGRES_DB: ${DB_NAME}
@@ -32,7 +32,8 @@ services:
       - my_network
     volumes:
       - ./gestion_filas:/app/gestion_filas
-      #- ./entrypoint.sh:/app/entrypoint.sh
+      - ./Pipfile:/app/Pipfile
+      - ./Pipfile.lock:/app/Pipfile.lock
     restart: unless-stopped  # Reinicio del servicio a menos que se detenga manualmente
 
   pgadmin:
