@@ -14,6 +14,7 @@ services:
       - my_network
     volumes:
       - ./db-data:/var/lib/postgresql/data
+    restart: unless-stopped  # Reinicio del servicio a menos que se detenga manualmente
 
   django:
     build:
@@ -29,6 +30,7 @@ services:
       - postgres
     networks:
       - my_network
+    restart: unless-stopped  # Reinicio del servicio a menos que se detenga manualmente
 
   pgadmin:
     image: dpage/pgadmin4:latest
@@ -37,11 +39,12 @@ services:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
     ports:
-      - "8080:80"
+      - "8008:80"
     depends_on:
       - postgres
     networks:
       - my_network
+    restart: unless-stopped  # Reinicio del servicio a menos que se detenga manualmente
 
 networks:
   my_network:
