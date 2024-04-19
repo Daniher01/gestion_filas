@@ -103,15 +103,17 @@ let enviar_formulario = (method, action, formData) => {
                                 clearInterval(timerInterval)
                                 window.location.href = url_main_pacientes
                               }
+
+                              
                         });
+                        // avisar que se actualiza un paciente
+                        chatSocket.send(JSON.stringify({
+                            message_type:'updateTabla',
+                            message: 'Se crea un paciente'
+                        }))
+                        
                     }
                   });
-
-                    // avisar que se actualiza un paciente
-                    chatSocket.send(JSON.stringify({
-                        message_type:'updateTabla',
-                        message: 'Se crea un paciente'
-                    }))
             }else{
                 Swal.fire({
                     title: `¡Lo Siento!`,
