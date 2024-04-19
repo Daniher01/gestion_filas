@@ -2,16 +2,10 @@ $(document).ready(function () {
     crear_tabla_datos()
     // todo crear alerta
     // todo recargar tabla cada segundo y medio
-});
 
-window.setInterval( //// CREA UN INTERVALO DE TIEMPO PARA LA RECARGA
-  function () {
-      
-    crear_tabla_datos()
-  },
-  // Intervalo de tiempo
-  6000 //1200
-);
+
+
+});
 
 const crear_tabla_datos = () => {
 
@@ -118,12 +112,15 @@ let enviar_form_atender = (id_atencion) => {
                 icon: response.atencion ? 'success': 'warning',
                 confirmButtonText: 'Etendido',
                 allowOutsideClick: false
-            }).then((result) => {
-                // Después de hacer clic en "Volver", recargar la página
-                if (result.isConfirmed) {
-                    location.reload();
-                }
-            });
+            })
+
+            // avisar que se actualiza un paciente
+            chatSocket.send(JSON.stringify({
+                message_type:'updateTabla',
+                message: 'Se atiene un paciente'
+              }))
+          
+
         },
         error: function (error) {
             console.log(error);
@@ -172,4 +169,13 @@ let mostrarAlertaPacientes = () => {
     const alertDiv = document.getElementById("alertPacientes");
     alertDiv.classList.remove("d-none");
     alertDiv.classList.add("d-block");
+}
+
+chatSocket.onmessage = (message) => {
+    const dataFromserver = JSON.parse(message.data)
+    console.log(dataFromserver);
+    if(dataFromserver.message_type === 'updateTabla' ){
+        crear_tabla_datos()
+    }
+
 }

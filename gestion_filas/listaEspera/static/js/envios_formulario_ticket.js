@@ -106,6 +106,12 @@ let enviar_formulario = (method, action, formData) => {
                         });
                     }
                   });
+
+                    // avisar que se actualiza un paciente
+                    chatSocket.send(JSON.stringify({
+                        message_type:'updateTabla',
+                        message: 'Se crea un paciente'
+                    }))
             }else{
                 Swal.fire({
                     title: `¡Lo Siento!`,
