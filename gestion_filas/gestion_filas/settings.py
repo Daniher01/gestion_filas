@@ -157,3 +157,9 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+print("DB_NAME:", os.environ.get('DB_NAME'))
+print("DB_USER:", os.environ.get('DB_USER'))
+print("DB_PASSWORD:", os.environ.get('DB_PASSWORD'))
+print("DB_HOST:", os.environ.get('DB_HOST'))
+print("DB_PORT:", os.environ.get('DB_PORT'))

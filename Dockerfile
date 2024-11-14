@@ -10,7 +10,7 @@ WORKDIR /app
 
 # Instala dependencias del sistema necesarias
 RUN apk update && \
-    apk add --no-cache gcc musl-dev libffi-dev openssl-dev cargo
+    apk add --no-cache gcc musl-dev libffi-dev openssl-dev cargo python3-dev postgresql-dev
 
 # Install pipenv
 RUN pip install pipenv
@@ -19,15 +19,17 @@ RUN pip install pipenv
 COPY Pipfile Pipfile.lock /app/
 
 # Install project dependencies
-RUN pipenv install --deploy --ignore-pipfile
+RUN pipenv install --deploy --ignore-pipfile --skip-lock
 
 # Copy the current directory contents into the container at /app/
 COPY ./gestion_filas /app/gestion_filas/
 
+# Copia el script entrypoint
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
 # Expose port 8000 for Django
 EXPOSE 8000
 
-# Run migrations and start the Django development server
-CMD /bin/sh -c "pipenv run python ./gestion_filas/manage.py migrate && \
-pipenv run python -c \"from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser('admin', 'admin@example.com', '1234') if not User.objects.filter(username='admin').exists() else None\" && \
-pipenv run python ./gestion_filas/manage.py runserver 0.0.0.0:8000"
+# Usa el script de entrypoint
+ENTRYPOINT ["/entrypoint.sh"]
