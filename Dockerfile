@@ -24,4 +24,9 @@ COPY ./gestion_filas /app/gestion_filas/
 EXPOSE 8000
 
 # Run migrations and start the Django development server
-CMD /bin/sh -c "pipenv run python ./gestion_filas/manage.py migrate && pipenv run python ./gestion_filas/manage.py runserver 0.0.0.0:8000"
+# CMD /bin/sh -c "pipenv run python ./gestion_filas/manage.py migrate && pipenv run python ./gestion_filas/manage.py runserver 0.0.0.0:8000"
+
+CMD /bin/sh -c "pipenv run python ./gestion_filas/manage.py migrate && \
+pipenv run python -c \"from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser('admin', 'admin@example.com', '1234') if not User.objects.filter(username='admin').exists() else None\" && \
+pipenv run python ./gestion_filas/manage.py runserver 0.0.0.0:8000"
+
