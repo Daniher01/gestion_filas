@@ -25,8 +25,9 @@ RUN pipenv install --deploy --ignore-pipfile --skip-lock
 COPY ./gestion_filas /app/gestion_filas/
 
 # Copia el script entrypoint
-COPY entrypoint.sh /entrypoint.sh
+COPY ./entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
+
 
 # Expose port 8000 for Django
 EXPOSE 8000
