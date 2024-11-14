@@ -26,10 +26,6 @@ SECRET_KEY = 'django-insecure-u#kqd3-zrgel-)_%xg5ahg99b%^khko+84)kr+#hu(i07kq)oh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['gestionfilas.tuimagenlab.cl', 'localhost', 'localhost:8000']
-
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -57,13 +53,22 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
 ]
 
+ALLOWED_HOSTS = ['gestionfilas.tuimagenlab.cl', 'localhost', 'localhost:8000']
+
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8000",
     "http://127.0.0.1:8000",
     "http://gestionfilas.tuimagenlab.cl",
     "https://gestionfilas.tuimagenlab.cl",
-    "https://gestionfilas.tuimagenlab.cl"
 ]
+
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+    "http://gestionfilas.tuimagenlab.cl",
+    "https://gestionfilas.tuimagenlab.cl",
+]
+
 
 CORS_ALLOW_METHODS = [
     'GET',
