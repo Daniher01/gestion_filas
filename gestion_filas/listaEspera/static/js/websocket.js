@@ -1,4 +1,4 @@
-const chatSocketUrl = `ws://${window.location.host}/ws/chat/tablaPacientes/`;
+const chatSocketUrl = `wss://${window.location.host}/ws/chat/tablaPacientes/`;
 let chatSocket = null;
 
 // Función para conectar o reconectar al WebSocket
