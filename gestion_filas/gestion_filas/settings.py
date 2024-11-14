@@ -26,13 +26,7 @@ SECRET_KEY = 'django-insecure-u#kqd3-zrgel-)_%xg5ahg99b%^khko+84)kr+#hu(i07kq)oh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    "http://localhost:8000",
-    "http://127.0.0.1:8000",
-    "http://gestionfilas.tuimagenlab.cl",
-    "https://gestionfilas.tuimagenlab.cl",
-    "https://gestionfilas.tuimagenlab.cl"
-]
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
