@@ -4,6 +4,8 @@ from django.http import JsonResponse
 from django.views import View
 from .models import Paciente, TomaEspera
 from .services import generar_numero_atencion, agregar_paciente
+from asgiref.sync import async_to_sync
+from channels.layers import get_channel_layer
 
 class PaginaPrincipal(View):
     template_name = 'pagina_principal.html'
@@ -33,6 +35,15 @@ def solicitar_numero(request):
 
         # ya agregado ese paciene a la lista, lo devuelve
         if ticket_espera:
+            channel_layer = get_channel_layer()
+            async_to_sync(channel_layer.group_send)(
+                'chat_default',  # El nombre del grupo (ajusta si usas otro nombre)
+                {
+                    'type': 'chat_message',
+                    'message': 'Se ha actualizado la tabla de espera.',
+                    'message_type': 'updateTabla'
+                }
+            )
             return JsonResponse({'ticket_espera': ticket_espera.to_dict()})
         else:
             return JsonResponse({'ticket_espera': None})
