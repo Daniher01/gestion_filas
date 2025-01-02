@@ -1,4 +1,5 @@
-const chatSocketUrl = `ws://${window.location.host}/ws/chat/tablaPacientes/`;
+const chatSocketUrl = `${window.location.protocol === 'https:' ? 'wss' : 'ws'}://${window.location.host}/ws/chat/tablaPacientes/`;
+
 let chatSocket = null;
 
 // Función para conectar o reconectar al WebSocket
