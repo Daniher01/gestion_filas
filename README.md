@@ -2,6 +2,8 @@
 
 Sitema web para la gestión de filas de un clínica de radiografías dentales
 
+(Visualiza el sistema aqui)[https://gestionfilas.tuimagenlab.cl/]
+
 ### Tecnologías utilizadas
 - Django
 - Docker
